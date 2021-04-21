@@ -27,6 +27,7 @@ export { default as Redirect } from "./Redirect.js";
 export { default as Route } from "./Route.js";
 export { default as Router } from "./Router.js";
 export { default as StaticRouter } from "./StaticRouter.js";
+export { default as HorizontalSwitch } from "./HorizontalSwitch.js";
 export { default as Switch } from "./Switch.js";
 export { default as generatePath } from "./generatePath.js";
 export { default as matchPath } from "./matchPath.js";

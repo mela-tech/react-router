@@ -77,6 +77,7 @@ const Link = forwardRef(
       component = LinkAnchor,
       replace,
       to,
+      horizontal,
       innerRef, // TODO: deprecate
       ...rest
     },
@@ -87,7 +88,7 @@ const Link = forwardRef(
         {context => {
           invariant(context, "You should not use <Link> outside a <Router>");
 
-          const { history } = context;
+          const { history, horizontalRouter } = context;
 
           const location = normalizeToLocation(
             resolveToLocation(to, context.location),
@@ -99,10 +100,22 @@ const Link = forwardRef(
             ...rest,
             href,
             navigate() {
-              const location = resolveToLocation(to, context.location);
+              let location = resolveToLocation(to, context.location);
               const method = replace ? history.replace : history.push;
-
-              method(location);
+              if (horizontalRouter && horizontal) {
+                let action = "open";
+                if (location === false) {
+                  location = horizontalRouter.prevPath;
+                  action = "close";
+                }
+                method(location, {
+                  horizontalRoute: true,
+                  action,
+                  horizontalRouteId: horizontalRouter.horizontalRouteId
+                });
+              } else {
+                method(location);
+              }
             }
           };
 
@@ -129,6 +142,7 @@ if (__DEV__) {
   const refType = PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
+    PropTypes.bool,
     PropTypes.shape({ current: PropTypes.any })
   ]);
 
@@ -139,7 +153,8 @@ if (__DEV__) {
     onClick: PropTypes.func,
     replace: PropTypes.bool,
     target: PropTypes.string,
-    to: toType.isRequired
+    to: toType.isRequired,
+    horizontal: PropTypes.bool
   };
 }
 
