@@ -36,6 +36,7 @@ class Router extends React.Component {
 
     if (!props.staticContext) {
       this.unlisten = props.history.listen(location => {
+        location.query = parse(location.search);
         if (this._isMounted) {
           if (location.state && location.state.horizontalRoute) {
             this.setState({

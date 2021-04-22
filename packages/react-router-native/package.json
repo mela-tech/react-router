@@ -1,6 +1,6 @@
 {
   "name": "react-horizotal-router-native",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "React Native bindings for React Router",
   "repository": "mela-tech/react-router",
   "license": "MIT",
@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "prop-types": "^15.6.1",
-    "react-horizontal-router": "5.3.0"
+    "react-horizontal-router": "5.3.1"
   }
 }

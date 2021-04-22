@@ -1,6 +1,6 @@
 {
   "name": "react-horizontal-router",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "Declarative routing for React",
   "repository": "mela-tech/react-router",
   "license": "MIT",
