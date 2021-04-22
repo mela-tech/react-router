@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableHighlight } from "react-native";
 import PropTypes from "prop-types";
 
-import { __HistoryContext as HistoryContext } from "react-router";
+import { __HistoryContext as HistoryContext } from "react-horizontal-router";
 
 export default class Link extends React.Component {
   static defaultProps = {

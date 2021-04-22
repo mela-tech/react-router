@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createMemoryHistory as createHistory } from "history";
-import { Router, __RouterContext as RouterContext } from "react-router";
+import {
+  Router,
+  __RouterContext as RouterContext
+} from "react-horizontal-router";
 
 import renderStrict from "./utils/renderStrict.js";
 

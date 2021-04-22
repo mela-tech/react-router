@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as ReactIs from "react-is";
-import { MemoryRouter, StaticRouter, Route, withRouter } from "react-router";
+import {
+  MemoryRouter,
+  StaticRouter,
+  Route,
+  withRouter
+} from "react-horizontal-router";
 
 import renderStrict from "./utils/renderStrict.js";
 

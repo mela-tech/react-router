@@ -1,5 +1,5 @@
 import warnAboutDeprecatedESMImport from "./warnAboutDeprecatedESMImport.js";
 warnAboutDeprecatedESMImport("withRouter");
 
-import { withRouter } from "../esm/react-router.js";
+import { withRouter } from "../esm/react-horizontal-router.js";
 export default withRouter;

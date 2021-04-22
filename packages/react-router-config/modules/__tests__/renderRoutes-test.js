@@ -1,6 +1,6 @@
 import React from "react";
 import { createMemoryHistory as createHistory } from "history";
-import { Router, StaticRouter } from "react-router";
+import { Router, StaticRouter } from "react-horizontal-router";
 import { renderRoutes } from "react-router-config";
 
 import renderStrict from "./utils/renderStrict.js";

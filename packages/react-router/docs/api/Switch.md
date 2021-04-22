@@ -7,7 +7,7 @@ Renders the first child [`<Route>`](Route.md) or [`<Redirect>`](Redirect.md) tha
 `<Switch>` is unique in that it renders a route _exclusively_. In contrast, every `<Route>` that matches the location renders _inclusively_. Consider these routes:
 
 ```jsx
-import { Route } from "react-router";
+import { Route } from "react-horizontal-router";
 
 let routes = (
   <div>
@@ -29,7 +29,7 @@ If the URL is `/about`, then `<About>`, `<User>`, and `<NoMatch>` will all rende
 Occasionally, however, we want to pick only one `<Route>` to render. If we're at `/about` we don't want to also match `/:user` (or show our "404" page). Here's how to do it with `Switch`:
 
 ```jsx
-import { Route, Switch } from "react-router";
+import { Route, Switch } from "react-horizontal-router";
 
 let routes = (
   <Switch>
@@ -90,7 +90,7 @@ When you include a `<Redirect>` in a `<Switch>`, it can use any of the `<Route>`
 If a `location` prop is given to the `<Switch>`, it will override the `location` prop on the matching child element.
 
 ```jsx
-import { Redirect, Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-horizontal-router";
 
 let routes = (
   <Switch>

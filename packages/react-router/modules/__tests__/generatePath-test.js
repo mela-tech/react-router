@@ -1,4 +1,4 @@
-import { generatePath } from "react-router";
+import { generatePath } from "react-horizontal-router";
 
 describe("generatePath", () => {
   describe('with pattern="/"', () => {

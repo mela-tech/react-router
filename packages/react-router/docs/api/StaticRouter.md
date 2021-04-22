@@ -10,7 +10,7 @@ Here's an example node server that sends a 302 status code for [`<Redirect>`](Re
 import http from "http";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router";
+import { StaticRouter } from "react-horizontal-router";
 
 http
   .createServer((req, res) => {

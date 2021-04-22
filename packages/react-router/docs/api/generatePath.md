@@ -3,7 +3,7 @@
 The `generatePath` function can be used to generate URLs to the routes. Internally the `path-to-regexp` library is used.
 
 ```js
-import { generatePath } from "react-router";
+import { generatePath } from "react-horizontal-router";
 
 generatePath("/user/:id/:entity(posts|comments)", {
   id: 1,

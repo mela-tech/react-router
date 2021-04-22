@@ -14,7 +14,7 @@ export {
   useLocation,
   useParams,
   useRouteMatch
-} from "react-router";
+} from "react-horizontal-router";
 
 export { default as BrowserRouter } from "./BrowserRouter.js";
 export { default as HashRouter } from "./HashRouter.js";

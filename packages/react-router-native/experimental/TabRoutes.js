@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router";
+import { Route } from "react-horizontal-router";
 import { View } from "react-native";
 
 import Link from "../Link.js";

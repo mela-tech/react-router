@@ -26,7 +26,7 @@ var matchRoutes = require("react-router-config").matchRoutes;
 The UMD build is also available on [unpkg](https://unpkg.com):
 
 ```html
-<script src="https://unpkg.com/react-router-config/umd/react-router-config.min.js"></script>
+<script src="https://unpkg.com/react-router-config/umd/react-horizontal-router-config.min.js"></script>
 ```
 
 You can find the library on `window.ReactRouterConfig`

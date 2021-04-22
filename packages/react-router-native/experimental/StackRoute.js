@@ -6,7 +6,7 @@
 // <3 <3 <3 - Ryan
 
 import React, { Component } from "react";
-import { Route, Redirect } from "react-router";
+import { Route, Redirect } from "react-horizontal-router";
 import { Text, View, Dimensions, Animated, PanResponder } from "react-native";
 import PropTypes from "prop-types";
 

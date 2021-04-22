@@ -2,7 +2,7 @@
   "name": "react-router-config",
   "version": "5.1.1",
   "description": "Static route config matching for React Router",
-  "repository": "ReactTraining/react-router",
+  "repository": "mela-tech/react-router",
   "license": "MIT",
   "author": "React Training <hello@reacttraining.com>",
   "files": [
@@ -18,7 +18,7 @@
     "umd"
   ],
   "main": "index.js",
-  "module": "esm/react-router-config.js",
+  "module": "esm/react-horizontal-router-config.js",
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
@@ -26,7 +26,7 @@
   },
   "peerDependencies": {
     "react": ">=15",
-    "react-router": ">=5"
+    "react-horizontal-router": ">=5"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.13"

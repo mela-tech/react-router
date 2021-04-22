@@ -14,7 +14,7 @@ Then with a module bundler like [webpack](https://webpack.github.io/), use as yo
 
 ```js
 // using ES6 modules
-import { Router, Route, Switch } from "react-router";
+import { Router, Route, Switch } from "react-horizontal-router";
 
 // using CommonJS modules
 var Router = require("react-router").Router;
@@ -25,7 +25,7 @@ var Switch = require("react-router").Switch;
 The UMD build is also available on [unpkg](https://unpkg.com):
 
 ```html
-<script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
+<script src="https://unpkg.com/react-router/umd/react-horizontal-router.min.js"></script>
 ```
 
 You can find the library on `window.ReactRouter`.

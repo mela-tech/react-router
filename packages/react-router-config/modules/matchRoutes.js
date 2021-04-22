@@ -1,4 +1,4 @@
-import { matchPath, Router } from "react-router";
+import { matchPath, Router } from "react-horizontal-router";
 
 function matchRoutes(routes, pathname, /*not public API*/ branch = []) {
   routes.some(route => {

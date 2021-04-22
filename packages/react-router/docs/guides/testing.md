@@ -102,19 +102,19 @@ const App = () => (
 
 // you can also use a renderer like "@testing-library/react" or "enzyme/mount" here
 import { render, unmountComponentAtNode } from "react-dom";
-import { act } from 'react-dom/test-utils';
+import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 
 // app.test.js
 it("navigates home when you click the logo", () => {
   // in a real test a renderer like "@testing-library/react"
   // would take care of setting up the DOM elements
-  const root = document.createElement('div');
+  const root = document.createElement("div");
   document.body.appendChild(root);
 
   // Render app
   render(
-    <MemoryRouter initialEntries={['/dashboard']}>
+    <MemoryRouter initialEntries={["/dashboard"]}>
       <App />
     </MemoryRouter>,
     root
@@ -123,13 +123,15 @@ it("navigates home when you click the logo", () => {
   // Interact with page
   act(() => {
     // Find the link (perhaps using the text content)
-    const goHomeLink = document.querySelector('#click-me');
+    const goHomeLink = document.querySelector("#click-me");
     // Click it
-    goHomeLink.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    goHomeLink.dispatchEvent(
+      new MouseEvent("click", { bubbles: true })
+    );
   });
 
   // Check correct page content showed up
-  expect(document.body.textContent).toBe('Welcome');
+  expect(document.body.textContent).toBe("Welcome");
 });
 ```
 
@@ -176,7 +178,7 @@ test("clicking filter links updates product query params", () => {
 ```jsx
 // app.test.js
 import { createMemoryHistory } from "history";
-import { Router } from "react-router";
+import { Router } from "react-horizontal-router";
 
 test("redirects to login page", () => {
   const history = createMemoryHistory();

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createMemoryHistory as createHistory } from "history";
-import { MemoryRouter, Router, Route } from "react-router";
+import { MemoryRouter, Router, Route } from "react-horizontal-router";
 
 import renderStrict from "./utils/renderStrict.js";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { BackHandler } from "react-native";
 
-import { __HistoryContext as HistoryContext } from "react-router";
+import { __HistoryContext as HistoryContext } from "react-horizontal-router";
 
 class BackButton extends React.Component {
   handleBack = () => {

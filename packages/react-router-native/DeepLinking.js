@@ -1,7 +1,7 @@
 import React from "react";
 import { Linking } from "react-native";
 
-import { __HistoryContext as HistoryContext } from "react-router";
+import { __HistoryContext as HistoryContext } from "react-horizontal-router";
 
 const protocolAndSlashes = /.*?:\/\//g;
 

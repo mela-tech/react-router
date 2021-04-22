@@ -1,4 +1,4 @@
-import { matchPath } from "react-router";
+import { matchPath } from "react-horizontal-router";
 
 describe("matchPath", () => {
   describe("without path property on params", () => {

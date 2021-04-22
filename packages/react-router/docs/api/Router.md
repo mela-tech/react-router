@@ -14,7 +14,7 @@ synchronize a custom history with a state management lib like Redux or Mobx. Not
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router } from "react-router";
+import { Router } from "react-horizontal-router";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();

@@ -1,5 +1,5 @@
 import warnAboutDeprecatedESMImport from "./warnAboutDeprecatedESMImport.js";
 warnAboutDeprecatedESMImport("NavLink");
 
-import { NavLink } from "../esm/react-router-dom.js";
+import { NavLink } from "../esm/react-horizontal-router-dom.js";
 export default NavLink;

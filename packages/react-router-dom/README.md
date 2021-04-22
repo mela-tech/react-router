@@ -23,7 +23,7 @@ const Link = require("react-router-dom").Link;
 The UMD build is also available on [unpkg](https://unpkg.com):
 
 ```html
-<script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+<script src="https://unpkg.com/react-router-dom/umd/react-horizontal-router-dom.min.js"></script>
 ```
 
 You can find the library on `window.ReactRouterDOM`.

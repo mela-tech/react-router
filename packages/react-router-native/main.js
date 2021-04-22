@@ -13,7 +13,7 @@ export {
   useLocation,
   useParams,
   useRouteMatch
-} from "react-router";
+} from "react-horizontal-router";
 
 export { default as BackButton } from "./BackButton.js";
 export { default as AndroidBackButton } from "./BackButton.js";

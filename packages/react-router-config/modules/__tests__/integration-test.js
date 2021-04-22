@@ -1,5 +1,5 @@
 import React from "react";
-import { StaticRouter } from "react-router";
+import { StaticRouter } from "react-horizontal-router";
 import { matchRoutes, renderRoutes } from "react-router-config";
 
 import renderToStringStrict from "./utils/renderToStringStrict.js";
