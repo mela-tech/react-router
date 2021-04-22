@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import warning from "tiny-warning";
+import { parse } from "query-string";
 
 import HistoryContext from "./HistoryContext.js";
 import RouterContext from "./RouterContext.js";
@@ -16,8 +17,10 @@ class Router extends React.Component {
   constructor(props) {
     super(props);
 
+    let location = props.history.location;
+    location.query = parse(location.search);
     this.state = {
-      location: props.history.location,
+      location,
       horizontalRoute: false,
       horizontalRouteId: undefined,
       action: undefined

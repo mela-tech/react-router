@@ -43,6 +43,7 @@
     "mini-create-react-context": "^0.4.0",
     "path-to-regexp": "^1.7.0",
     "prop-types": "^15.6.2",
+    "query-string": "^7.0.0",
     "react-is": "^16.6.0",
     "tiny-invariant": "^1.0.2",
     "tiny-warning": "^1.0.0"
