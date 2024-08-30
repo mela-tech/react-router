@@ -3,7 +3,7 @@ const babel = require("rollup-plugin-babel");
 const replace = require("rollup-plugin-replace");
 const commonjs = require("rollup-plugin-commonjs");
 const nodeResolve = require("rollup-plugin-node-resolve");
-const { uglify } = require("rollup-plugin-uglify");
+const { terser } = require("rollup-plugin-terser");
 
 const pkg = require("./package.json");
 
@@ -41,7 +41,7 @@ const cjs = [
         "process.env.NODE_ENV": JSON.stringify("production"),
         "process.env.BUILD_FORMAT": JSON.stringify("cjs")
       }),
-      uglify()
+      terser()
     ]
   }
 ];
@@ -133,7 +133,7 @@ const umd = [
         "process.env.NODE_ENV": JSON.stringify("production"),
         "process.env.BUILD_FORMAT": JSON.stringify("umd")
       }),
-      uglify()
+      terser()
     ]
   }
 ];

@@ -6,6 +6,7 @@ export {
   Router,
   StaticRouter,
   Switch,
+  HorizontalSwitch,
   generatePath,
   matchPath,
   withRouter,

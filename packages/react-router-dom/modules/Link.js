@@ -1,6 +1,6 @@
 import React from "react";
 import { __RouterContext as RouterContext } from "react-router";
-import { createPath } from 'history';
+import { createPath } from "history";
 import PropTypes from "prop-types";
 import invariant from "tiny-invariant";
 import {
@@ -78,6 +78,7 @@ const Link = forwardRef(
       component = LinkAnchor,
       replace,
       to,
+      horizontal,
       innerRef, // TODO: deprecate
       ...rest
     },
@@ -88,7 +89,7 @@ const Link = forwardRef(
         {context => {
           invariant(context, "You should not use <Link> outside a <Router>");
 
-          const { history } = context;
+          const { history, horizontalRouter } = context;
 
           const location = normalizeToLocation(
             resolveToLocation(to, context.location),
@@ -101,10 +102,27 @@ const Link = forwardRef(
             href,
             navigate() {
               const location = resolveToLocation(to, context.location);
-              const isDuplicateNavigation = createPath(context.location) === createPath(normalizeToLocation(location));
-              const method = (replace || isDuplicateNavigation) ? history.replace : history.push;
-
-              method(location);
+              const isDuplicateNavigation =
+                createPath(context.location) ===
+                createPath(normalizeToLocation(location));
+              const method =
+                replace || isDuplicateNavigation
+                  ? history.replace
+                  : history.push;
+              if (horizontalRouter && horizontal) {
+                const action = location === false ? "close" : "open";
+                const finalLocation =
+                  location === false
+                    ? horizontalRouter.prevPath + horizontalRouter.prevSearch
+                    : location;
+                method(finalLocation, {
+                  horizontalRoute: true,
+                  action,
+                  horizontalRouteId: horizontalRouter.horizontalRouteId
+                });
+              } else {
+                method(location);
+              }
             }
           };
 
@@ -126,11 +144,13 @@ if (__DEV__) {
   const toType = PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
+    PropTypes.bool,
     PropTypes.func
   ]);
   const refType = PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
+    PropTypes.bool,
     PropTypes.shape({ current: PropTypes.any })
   ]);
 
@@ -141,7 +161,8 @@ if (__DEV__) {
     onClick: PropTypes.func,
     replace: PropTypes.bool,
     target: PropTypes.string,
-    to: toType.isRequired
+    to: toType.isRequired,
+    horizontal: PropTypes.bool
   };
 }
 

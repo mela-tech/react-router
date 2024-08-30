@@ -35,13 +35,42 @@ class Route extends React.Component {
           invariant(context, "You should not use <Route> outside a <Router>");
 
           const location = this.props.location || context.location;
+          const { history } = context;
+          const horizontalRoute = this.props.horizontalRoute;
           const match = this.props.computedMatch
             ? this.props.computedMatch // <Switch> already computed the match for us
             : this.props.path
             ? matchPath(location.pathname, this.props)
             : context.match;
 
-          const props = { ...context, location, match };
+          const openLink = (to, replace = false, horizontal = true) => {
+            const method = replace ? history.replace : history.push;
+            if (horizontalRoute && horizontal) {
+              const {
+                prevPath,
+                horizontalRouteId,
+                prevSearch
+              } = horizontalRoute;
+              let action = "open";
+              if (to === false) {
+                to = prevPath + prevSearch;
+                action = "close";
+              }
+              method(to, {
+                horizontalRoute: true,
+                action,
+                horizontalRouteId
+              });
+            } else {
+              method(to);
+            }
+          };
+
+          const props = { ...context, location, match, openLink };
+
+          if (horizontalRoute) {
+            props.horizontalRouter = horizontalRoute;
+          }
 
           let { children, component, render } = this.props;
 
@@ -90,6 +119,7 @@ if (__DEV__) {
     },
     exact: PropTypes.bool,
     location: PropTypes.object,
+    horizontalRoute: PropTypes.object,
     path: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string)

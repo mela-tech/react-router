@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import warning from "tiny-warning";
+import { parse } from "query-string";
 
 import HistoryContext from "./HistoryContext.js";
 import RouterContext from "./RouterContext.js";
@@ -16,8 +17,13 @@ class Router extends React.Component {
   constructor(props) {
     super(props);
 
+    let location = props.history.location;
+    location.query = parse(location.search);
     this.state = {
-      location: props.history.location
+      location,
+      horizontalRoute: false,
+      horizontalRouteId: undefined,
+      action: undefined
     };
 
     // This is a bit of a hack. We have to start listening for location
@@ -45,13 +51,43 @@ class Router extends React.Component {
     }
     if (!this.props.staticContext) {
       this.unlisten = this.props.history.listen(location => {
+        location.query = parse(location.search);
         if (this._isMounted) {
-          this.setState({ location });
+          if (location.state && location.state.horizontalRoute) {
+            this.setState({
+              location,
+              horizontalRoute: true,
+              horizontalRouteId: location.state.horizontalRouteId,
+              action: location.state.action
+            });
+          } else {
+            this.setState({
+              location,
+              horizontalRoute: false,
+              horizontalRouteId: undefined,
+              action: undefined
+            });
+          }
         }
       });
     }
     if (this._pendingLocation) {
-      this.setState({ location: this._pendingLocation });
+      const location = this._pendingLocation;
+      if (location.state && location.state.horizontalRoute) {
+        this.setState({
+          location,
+          horizontalRoute: true,
+          horizontalRouteId: location.state.horizontalRouteId,
+          action: location.state.action
+        });
+      } else {
+        this.setState({
+          location,
+          horizontalRoute: false,
+          horizontalRouteId: undefined,
+          action: undefined
+        });
+      }
     }
   }
 
@@ -64,15 +100,20 @@ class Router extends React.Component {
   }
 
   render() {
+    const props = {
+      history: this.props.history,
+      location: this.state.location,
+      match: Router.computeRootMatch(this.state.location.pathname),
+      staticContext: this.props.staticContext
+    };
+    if (this.state.horizontalRoute) {
+      props.horizontalRouter = {
+        horizontalRouteId: this.state.horizontalRouteId,
+        action: this.state.action
+      };
+    }
     return (
-      <RouterContext.Provider
-        value={{
-          history: this.props.history,
-          location: this.state.location,
-          match: Router.computeRootMatch(this.state.location.pathname),
-          staticContext: this.props.staticContext
-        }}
-      >
+      <RouterContext.Provider value={props}>
         <HistoryContext.Provider
           children={this.props.children || null}
           value={this.props.history}

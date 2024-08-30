@@ -10,14 +10,13 @@ import generatePath from "./generatePath.js";
 /**
  * The public API for navigating programmatically with a component.
  */
-function Redirect({ computedMatch, to, push = false }) {
+function Redirect({ computedMatch, to, push = false, horizontal }) {
   return (
     <RouterContext.Consumer>
       {context => {
         invariant(context, "You should not use <Redirect> outside a <Router>");
 
-        const { history, staticContext } = context;
-
+        const { history, staticContext, horizontalRouter } = context;
         const method = push ? history.push : history.replace;
         const location = createLocation(
           computedMatch
@@ -30,17 +29,34 @@ function Redirect({ computedMatch, to, push = false }) {
             : to
         );
 
+        const handleMethod = location => {
+          if (horizontalRouter && horizontal) {
+            const action = location === false ? "close" : "open";
+            const finalLocation =
+              location === false
+                ? horizontalRouter.prevPath + horizontalRouter.prevSearch
+                : location;
+            method(finalLocation, {
+              horizontalRoute: true,
+              action,
+              horizontalRouteId: horizontalRouter.horizontalRouteId
+            });
+          } else {
+            method(location);
+          }
+        };
+
         // When rendering in a static context,
         // set the new location immediately.
         if (staticContext) {
-          method(location);
+          handleMethod(location);
           return null;
         }
 
         return (
           <Lifecycle
             onMount={() => {
-              method(location);
+              handleMethod(location);
             }}
             onUpdate={(self, prevProps) => {
               const prevLocation = createLocation(prevProps.to);
@@ -50,7 +66,7 @@ function Redirect({ computedMatch, to, push = false }) {
                   key: prevLocation.key
                 })
               ) {
-                method(location);
+                handleMethod(location);
               }
             }}
             to={to}
@@ -65,7 +81,12 @@ if (__DEV__) {
   Redirect.propTypes = {
     push: PropTypes.bool,
     from: PropTypes.string,
-    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
+    to: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.bool
+    ]).isRequired,
+    horizontal: PropTypes.bool
   };
 }
 
